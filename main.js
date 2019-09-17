@@ -124,10 +124,12 @@
 		})
 		sorters.reverse();
 		const sorterIndex = headers.indexOf(sorters[0]);
+		const itemsNotNull = filterNull(sorterIndex);
 		switch(getSort()){
 			case "regular":
 				console.profile("regularSort");
-				regularSort(data);
+				const regularArr = regularSort(itemsNotNull, sorterIndex);
+				renderNodes(regularArr);
 				console.profileEnd("regularSort");
 				break;
 			case "bubble":
@@ -158,14 +160,15 @@
 				console.profileEnd("regularSort");
 		}
 	}
-	function regularSort(arr, index){
-		const items = Array.from(tableEle.childNodes);
+	function regularSort(arr, sorterIndex){
 		arr.sort((a, b) => {
-			const x = a["Area"] === null ? -1 : a["Area"];
-			const y = b["Area"] === null ? -1 : b["Area"];
+			const rowA = Array.from(a.childNodes);
+			const rowB = Array.from(b.childNodes);
+			const x = parseFloat(rowA[sorterIndex].textContent)
+			const y = parseFloat(rowB[sorterIndex].textContent)
 			return x < y ? -1 : (x > y) ? 1 : 0;
 		});
-		console.log(arr);
+		return arr;
 	}
 	function bubbleSort(arr, sorterIndex) {
 		
@@ -219,7 +222,11 @@
 		return sorter;
 	}
 	function filterNull(sorterIndex){
-		
+		const items = Array.from(tableEle.childNodes);
+		return items.filter((row) => {
+			const rowTD = Array.from(row.childNodes);
+			return rowTD[sorterIndex].textContent;
+		})
 	}
 	function minMaxMean(items) {
 		let summary = {},
