@@ -159,6 +159,13 @@
 		}
 	}
 	function regularSort(arr, index){
+		const items = Array.from(tableEle.childNodes);
+		arr.sort((a, b) => {
+			const x = a["Area"] === null ? -1 : a["Area"];
+			const y = b["Area"] === null ? -1 : b["Area"];
+			return x < y ? -1 : (x > y) ? 1 : 0;
+		});
+		console.log(arr);
 	}
 	function bubbleSort(arr, sorterIndex) {
 		
