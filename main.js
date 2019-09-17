@@ -175,12 +175,12 @@
 	function bubbleSort(arr, sorterIndex) {
 		let swapped;
 		do {
-			swaped = false;
+			swapped = false;
 			for(let i = 0; i < arr.length; i++) {
 				const j = i + 1;
 				if(arr[i] && arr[j]) {
-					const rowA = Array.from(a.childNodes);
-					const rowB = Array.from(b.childNodes);
+					const rowA = Array.from(arr[i].childNodes);
+					const rowB = Array.from(arr[j].childNodes);
 					const x = parseFloat(rowA[sorterIndex].textContent)
 					const y = parseFloat(rowB[sorterIndex].textContent)
 					if(x > y) {
@@ -193,6 +193,7 @@
 			}
 
 		} while(swapped);
+		return arr;
 	}
 	function mergeSort (arr) {
 		if(arr.length <= 1) {
@@ -208,7 +209,7 @@
 	}
 	
 	function merge (left, right) {
-		let results = []
+		let results = [],
 		indexLeft = 0,
 		indexRight = 0;
 		const sorterIndex = headers.indexOf(sorters[0]);
@@ -224,11 +225,10 @@
 				results.push(right[indexRight]);
 				indexRight++;
 			}
-			return results.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
 		}
-
-
+		return results.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
 	}
+
 	function insertionSort (arr) {
 		
 	}
