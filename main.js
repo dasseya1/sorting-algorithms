@@ -146,8 +146,8 @@
 				break;
 			case "insertion":
 				console.profile("insertionSort");
-				const insertArr = insertionSort(itemsNotNull, sorterIndex);
-				renderNodes(insertArr);
+				const insertionArr = insertionSort(itemsNotNull, sorterIndex);
+				renderNodes(insertionArr);
 				console.profileEnd("insertionSort");
 				break;
 			case "quartile":
@@ -244,10 +244,10 @@
 				} else {
 					arr[j+1] = arr[j];
 				}
-				arr[j+1] = currentValue;
 			}
-			return arr;
+			arr[j+1] = currentValue;
 		}
+		return arr;
 	}
 	function quartileSort(sorter){
 		
