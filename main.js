@@ -134,7 +134,8 @@
 				break;
 			case "bubble":
 				console.profile("bubbleSort");
-				bubbleSort();
+				const bubbleArr = bubbleSort(itemsNotNull, sorterIndex);
+				renderNodes(bubbleArr);
 				console.profileEnd("bubbleSort");
 				break;
 			case "merge":
@@ -171,7 +172,26 @@
 		return arr;
 	}
 	function bubbleSort(arr, sorterIndex) {
-		
+		let swapped;
+		do {
+			swaped = false;
+			for(let i = 0; i < arr.length; i++) {
+				const j = i + 1;
+				if(arr[i] && arr[j]) {
+					const rowA = Array.from(a.childNodes);
+					const rowB = Array.from(b.childNodes);
+					const x = parseFloat(rowA[sorterIndex].textContent)
+					const y = parseFloat(rowB[sorterIndex].textContent)
+					if(x > y) {
+						let temp = arr[i];
+						arr[i] = arr[j];
+						arr[j] = temp;
+						swapped = true;
+					}
+				}
+			}
+
+		} while(swapped);
 	}
 	function mergeSort (arr) {
 		
